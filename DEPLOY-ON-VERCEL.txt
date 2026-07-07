@@ -1,0 +1,31 @@
+A to Z Interior - Vercel Deployment Guide
+
+What was fixed:
+1. Mobile gallery sections are now always visible. The previous reveal animation could keep very tall image groups hidden on mobile.
+2. Gallery CSS now uses a reliable mobile grid instead of CSS columns on small screens.
+3. Image tags were cleaned up for better browser compatibility.
+4. Added vercel.json for Vercel static deployment and asset caching.
+
+Deploy to Vercel:
+1. Go to https://vercel.com and sign in.
+2. Click Add New > Project.
+3. Upload this project folder or import it from GitHub.
+4. Framework Preset: Other.
+5. Root Directory: keep the folder that contains index.html.
+6. Build Command: leave empty.
+7. Output Directory: leave empty.
+8. Click Deploy.
+
+Connect your domain:
+1. Open your Vercel project.
+2. Go to Settings > Domains.
+3. Add your domain: azharatozinterior.com
+4. Add www.azharatozinterior.com also.
+5. In your domain DNS panel, set:
+   - A record for @ to 216.198.79.1
+   - CNAME record for www to cname.vercel-dns.com
+6. Wait for DNS verification. It can take a few minutes to 24 hours depending on your domain provider.
+
+Important:
+- Keep the assets folder with index.html. Do not upload only index.html.
+- After deploying, test on mobile with Chrome incognito and clear cache if old images still appear.
