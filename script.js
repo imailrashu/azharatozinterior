@@ -12,7 +12,7 @@ if (menu && links) {
   document.addEventListener('click', event => {
     if (!event.target.closest('.nav') && links.classList.contains('open')) {
       links.classList.remove('open');
-      menu.setAttribute('aria-expanded', 'false');
+      links.setAttribute('aria-expanded', 'false');
     }
   });
 }
@@ -44,6 +44,53 @@ if (lightbox && closeLightbox) {
 }
 
 document.querySelectorAll('.reveal').forEach(element => element.classList.add('show'));
+
+// SEO: add a canonical URL and LocalBusiness structured data without changing the visual UI.
+(() => {
+  const canonicalUrl = 'https://www.azharatozinterior.com/';
+  if (!document.querySelector('link[rel="canonical"]')) {
+    const canonical = document.createElement('link');
+    canonical.rel = 'canonical';
+    canonical.href = canonicalUrl;
+    document.head.appendChild(canonical);
+  }
+
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'InteriorDesigner',
+    '@id': canonicalUrl + '#business',
+    name: 'A to Z Interior',
+    url: canonicalUrl,
+    logo: canonicalUrl + 'logo-01.jpg',
+    image: canonicalUrl + 'bedrooms-01.jpg',
+    telephone: '+91-7044204914',
+    description: 'A to Z Interior provides custom home interiors, modular kitchens, wardrobes, bedrooms, TV units, wall panels, furniture and renovation services in Kolkata.',
+    foundingDate: '2016',
+    areaServed: {
+      '@type': 'City',
+      name: 'Kolkata'
+    },
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Kolkata',
+      addressRegion: 'West Bengal',
+      addressCountry: 'IN'
+    },
+    serviceType: [
+      'Home Interior Design',
+      'Modular Kitchen Design',
+      'Wardrobe Design',
+      'Bedroom Interior Design',
+      'TV Unit Design',
+      'Wall Panel Design',
+      'Custom Furniture'
+    ]
+  };
+  const schema = document.createElement('script');
+  schema.type = 'application/ld+json';
+  schema.textContent = JSON.stringify(structuredData);
+  document.head.appendChild(schema);
+})();
 
 const SUPABASE_URL = 'https://brricholndptzcllwyuu.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_dSsFCcmOKvVa_GwEgD8pYA_CO1uVk6R';
