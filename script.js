@@ -12,7 +12,7 @@ if (menu && links) {
   document.addEventListener('click', event => {
     if (!event.target.closest('.nav') && links.classList.contains('open')) {
       links.classList.remove('open');
-      links.setAttribute('aria-expanded', 'false');
+      menu.setAttribute('aria-expanded', 'false');
     }
   });
 }
